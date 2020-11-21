@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<!--Fragment indicates its a reusable component which can be used in multiple pages.-->
+    <head th:fragment="site-head"></head>
+    <body>
+        <header th:fragment="logged-out" th:remove="tag">
+            <header>
+                <a href="users/login.html" th:href="@{/users/login}">Login</a> <!--users/login - is a RequestMapping in UsersController -->
+                                                                                <!-- Note the / in the beginning this defines the absolute path else upon request the old string gets appended-->
+                <a href="users/registration.html" th:href="@{/users/registration}">Registration</a>
+
+                <a href="posts/create.html" th:href="@{/posts/newpost}">Create post</a>
+            </header>
+        </header>
+
+        <header th:fragment="logged-in" th:remove="tag">
+            <header>
+                <form method="post" th:action="@{/users/logout}"> <!--users/logout - is a RequestMapping in UsersController -->
+                    <input type="submit" value="Logout"/>
+                </form>
+            </header>
+        </header>
+    </body>
+</html>
+
+<!--head tag   -- used to hold meta info like title links etc and is not displayed on the page.
+    header tag -- used within the body to display the header of the website.-->
